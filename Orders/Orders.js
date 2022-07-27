@@ -1,3 +1,11 @@
+require('dotenv').config();
+const SidekickDebugger = require('@runsidekick/sidekick-agent-nodejs');
+
+SidekickDebugger.start({ 
+    apiKey: process.env.sidekick_apikey,
+	brokerHost: process.env.sidekick_host,
+	applicationName: "orders service"
+});
 // Load express
 const express  = require("express");
 const app = express()
@@ -12,7 +20,7 @@ const mongoose = require("mongoose");
 // Global Order Object which will be the instance of MongoDB document
 var Order;
 async function connectMongoose() {
-	await mongoose.connect("mongodb://127.0.0.1:27017", { useNewUrlParser: true, useUnifiedTopology:true }).then(() =>{
+	await mongoose.connect(process.env.mongodb, { useNewUrlParser: true, useUnifiedTopology:true }).then(() =>{
 		console.log("mongoose connected..")
 	})
 	require("./Order");
