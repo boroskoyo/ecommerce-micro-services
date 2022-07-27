@@ -4,7 +4,8 @@ const SidekickDebugger = require('@runsidekick/sidekick-agent-nodejs');
 SidekickDebugger.start({ 
     apiKey: process.env.sidekick_apikey,
 	brokerHost: process.env.sidekick_host,
-	applicationName: "orders service"
+	applicationName: "orders service",
+	logLevel:'debug'
 });
 // Load express
 const express  = require("express");
